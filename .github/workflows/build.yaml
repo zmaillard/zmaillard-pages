@@ -31,16 +31,13 @@ jobs:
           token: ${{ secrets.GITHUB_REPO_TOKEN }}
           path: zmaillard.github.io
 
-      - name: Filesystem
-        run: du -al
-#
-#      - run: |
-#          version=`echo "${{ env.IMAGE_VERSION }}"`
-#          sed -i "s/\(go\-bot\:\)\([0-9]*\.[0-9]*\.[0-9]*\)/\1$version/" k8s.sagebrushgis/overlay/prod/gobot-dep.yaml
-#
-#      - uses: peter-evans/create-pull-request@v2
-#        with:
-#          title: "Updating Go-Bot To ${{ env.IMAGE_VERSION }}"
-#          token: ${{ secrets.GITHUB_REPO_TOKEN }}
-#          path: k8s.sagebrushgis
-#          branch-suffix: short-commit-hash
+      - name: Copy Changes
+        shell: bash
+        run: cp -R ./public/* ./zmaillard.github.io/
+
+      - uses: peter-evans/create-pull-request@v2
+        with:
+          title: "Updating GitHub Pages With Updates"
+          token: ${{ secrets.GITHUB_REPO_TOKEN }}
+          path: zmaillard.github.io
+          branch-suffix: short-commit-hash
