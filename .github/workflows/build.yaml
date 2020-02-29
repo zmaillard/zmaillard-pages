@@ -16,9 +16,6 @@ jobs:
           git submodule sync --recursive
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
 
-      - name: Filesystem
-        run: du -al
-
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2.2.2
         with:
@@ -28,11 +25,14 @@ jobs:
         run: hugo
 
 
-#      - uses: actions/checkout@v2
-#        with:
-#          repository: zmaillard/k8s.sagebrushgis
-#          token: ${{ secrets.GITHUB_REPO_TOKEN }}
-#          path: k8s.sagebrushgis#
+      - uses: actions/checkout@v2
+        with:
+          repository: zmaillard/zmaillard.github.io
+          token: ${{ secrets.GITHUB_REPO_TOKEN }}
+          path: zmaillard.github.io
+
+      - name: Filesystem
+        run: du -al
 #
 #      - run: |
 #          version=`echo "${{ env.IMAGE_VERSION }}"`
