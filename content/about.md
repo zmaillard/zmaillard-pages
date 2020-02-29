@@ -1,5 +1,4 @@
 +++ 
-draft = true
 date = 2020-02-28T17:54:13-07:00
 title = "About Zach"
 slug = "about" 

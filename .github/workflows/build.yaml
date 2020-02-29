@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          submodules: true
+      - name: Filesystem
+        run: du -al
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.2
+        with:
+          hugo-version: '0.58.3'
+
+      - name: Build
+        run: hugo
+
+
+#      - uses: actions/checkout@v2
+#        with:
+#          repository: zmaillard/k8s.sagebrushgis
+#          token: ${{ secrets.GITHUB_REPO_TOKEN }}
+#          path: k8s.sagebrushgis#
+#
+#      - run: |
+#          version=`echo "${{ env.IMAGE_VERSION }}"`
+#          sed -i "s/\(go\-bot\:\)\([0-9]*\.[0-9]*\.[0-9]*\)/\1$version/" k8s.sagebrushgis/overlay/prod/gobot-dep.yaml
+#
+#      - uses: peter-evans/create-pull-request@v2
+#        with:
+#          title: "Updating Go-Bot To ${{ env.IMAGE_VERSION }}"
+#          token: ${{ secrets.GITHUB_REPO_TOKEN }}
+#          path: k8s.sagebrushgis
+#          branch-suffix: short-commit-hash
