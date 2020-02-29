@@ -35,9 +35,14 @@ jobs:
         shell: bash
         run: cp -R ./public/* ./zmaillard.github.io/
 
-      - uses: peter-evans/create-pull-request@v2
+
+      - name: Commit files
+        run: |
+          git config --local user.email "zmaillard@protonmail.com"
+          git config --local user.name "Zach Maillard"
+          git commit -am "Updated Pages"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          title: "Updating GitHub Pages With Updates"
-          token: ${{ secrets.GITHUB_REPO_TOKEN }}
-          path: zmaillard.github.io
-          branch-suffix: short-commit-hash
+          github_token: ${{ secrets.GITHUB_REPO_TOKEN }}
