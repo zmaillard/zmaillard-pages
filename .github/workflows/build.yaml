@@ -38,6 +38,7 @@ jobs:
 
       - name: Commit files
         run: |
+          cd ./zmaillard.github.io/
           git config --local user.email "zmaillard@protonmail.com"
           git config --local user.name "Zach Maillard"
           git commit -am "Updated Pages"
