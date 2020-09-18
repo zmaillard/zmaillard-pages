@@ -41,6 +41,7 @@ jobs:
           cd ./zmaillard.github.io/
           git config --local user.email "zmaillard@protonmail.com"
           git config --local user.name "Zach Maillard"
+          git add .
           git commit -am "Updated Pages"
 
       - name: Push changes
