@@ -24,27 +24,21 @@ jobs:
       - name: Build
         run: hugo
 
+      - uses: chrislennon/action-aws-cli@v1.1
 
-      - uses: actions/checkout@v2
-        with:
-          repository: zmaillard/zmaillard.github.io
-          token: ${{ secrets.GITHUB_REPO_TOKEN }}
-          path: zmaillard.github.io
-
-      - name: Copy Changes
-        shell: bash
-        run: cp -R ./public/* ./zmaillard.github.io/
-
-
-      - name: Commit files
+      - name: Upload S3
         run: |
-          cd ./zmaillard.github.io/
-          git config --local user.email "zmaillard@protonmail.com"
-          git config --local user.name "Zach Maillard"
-          git add .
-          git commit -am "Updated Pages"
+            aws s3 sync public/ s3://sagebrushgis.com/ 
+            aws s3 sync public/ s3://www.sagebrushgis.com/ 
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_REPO_TOKEN }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Invalidate Cache
+        run: |
+            aws cloudfront create-invalidation --distribution-id E3K5BGWIOBE43A --paths /index.html
+            aws cloudfront create-invalidation --distribution-id E2HM033WC46BN3 --paths /index.html
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
