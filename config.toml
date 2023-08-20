@@ -3,6 +3,10 @@ languageCode = "en-us"
 title = "Zach Maillard"
 theme = "hugo-coder"
 
+[security]
+    [security.funcs]
+        getenv = ['^HUGO_', '^CI$', '^GIT_']
+
 
 [taxonomies]
   category = "categories"
