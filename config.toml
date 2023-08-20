@@ -1,4 +1,4 @@
-baseurl = "https://sagebrushgis.com/"
+baseurl = "https://www.sagebrushgis.com/"
 languageCode = "en-us"
 title = "Zach Maillard"
 theme = "hugo-coder"
