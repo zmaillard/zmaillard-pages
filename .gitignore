@@ -11,3 +11,6 @@ $RECYCLE.BIN/
 
 resources/
 
+public/
+
+.idea/

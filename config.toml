@@ -26,8 +26,10 @@ theme = "hugo-coder"
     hideCopyright = false
     since = 2019
 
+    hideColorSchemeToggle = true
+
     # Git Commit in Footer, uncomment the line below to enable it.
-    commit = "https://github.com/luizdepra/hugo-coder/tree/"
+    #commit = "https://github.com/luizdepra/hugo-coder/tree/"
 
     rtl = false
 
@@ -52,16 +54,6 @@ theme = "hugo-coder"
     icon = "fab fa-github"
     weight = 1
     url = "https://github.com/zmaillard/"
-[[params.social]]
-    name = "Twitter"
-    icon = "fab fa-twitter"
-    weight = 2
-    url = "https://twitter.com/sagebrushgis/"
-[[params.social]]
-    name = "Keybase"
-    icon = "fab fa-keybase"
-    weight = 3
-    url = "https://keybase.io/sagebrushgis"
 [[params.social]]
     name = "LinkedIn"
     icon = "fab fa-linkedin"
